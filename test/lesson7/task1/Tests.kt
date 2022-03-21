@@ -1,9 +1,11 @@
 package lesson7.task1
 
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 import java.io.File
+import java.io.FileNotFoundException
 
 class Tests {
 
@@ -440,5 +442,42 @@ Basic, Ruby, Swift.
         )
 
         File("temp.txt").delete()
+    }
+
+    //Lab2 testing
+    @Test
+    fun lab2CountSubstrings() {
+        //Проверим самый простой вариант на одинаковые символы
+        assertEquals(
+            mapOf("/" to 4, "//" to 3, "///" to 2, "////" to 1),
+            countSubstrings("input/lab2SubstringTesting.txt", listOf("/", "//", "///", "////"))
+        )
+
+        //Теперь не такой тривиальный вариант с 2 одинаковыми входными данными
+        //Вторые "//" не учитывались в финальном подсчете
+        assertEquals(
+            mapOf("//" to 3, "///" to 2, "////" to 1),
+            countSubstrings("input/lab2SubstringTesting.txt", listOf("//", "//", "///", "////"))
+        )
+
+        //Посмотрим как прочитаются ракетки
+        assertEquals(
+            mapOf("🚀" to 7),
+            countSubstrings("input/lab2SubstringTesting2.txt", listOf("🚀"))
+        )
+
+        //Теперь посмотрим сколько раз в басне Крылова встречается Лебедь, Рак и Щука
+        assertEquals(
+            mapOf("Щука" to 2, "Лебедь" to 2, "Рак" to 2),
+            countSubstrings("input/lab2SubstringTesting3.txt", listOf("Щука", "Лебедь", "Рак"))
+        )
+
+        //Исключение не обработано)
+        Assertions.assertThrows(FileNotFoundException::class.java) {
+            countSubstrings(
+                "input/lol.txt",
+                listOf("ХА_ХА_ХА")
+            )
+        }
     }
 }
