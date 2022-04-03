@@ -170,5 +170,8 @@ class Tests {
         //Это тоже не верно, такой формат не допустим
         //Должны получить -1, но получаем 5 т.к 5 + 2 - 2 = 5
         assertEquals(5, fromRoman("IIVII"))
+
+        //Добавим тест для полного покрытия кода
+        assertEquals(1978, fromRoman("MCMLXXVIII"))
     }
 }

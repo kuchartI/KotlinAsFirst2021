@@ -370,6 +370,14 @@ class Tests {
                 400
             )
         )
+        //Тестируем на пустом Map
+        assertEquals(
+            emptySet<String>(),
+            bagPacking(
+                emptyMap(),
+                0
+            )
+        )
         //И еще 1 пограничный вариант пограничный вариант
         assertEquals(
             emptySet<String>(),
